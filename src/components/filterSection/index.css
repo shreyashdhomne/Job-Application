@@ -1,0 +1,9 @@
+.my-card {
+    background-color: rgb(24, 22, 22);
+    border-radius: 20px;
+    transition: 0.2s ease-in;
+}
+
+.my-card:hover {
+    transform: scale(1.02);
+}
