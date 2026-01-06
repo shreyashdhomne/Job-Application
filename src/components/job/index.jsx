@@ -8,14 +8,21 @@ import DisplayJobCard from '../displayJobCard';
 const Job = () => {
 
     const [allValues, setValues] = useState({
-        userArr: []
+        userArr: [],
+        empType: [],
+        salary: "",
+        userIn: ""
     }, [])
 
     useEffect(() => {
 
         const fetchJobsData = async () => {
+
             const token = Cookies.get("myToken")
-            const api = "https://apis.ccbp.in/jobs";
+
+            const { empType, salary, userIn } = allValues;
+
+            const api = `https://apis.ccbp.in/jobs?employment_type=${empType}&minimum_package=${salary}&search=${userIn}`;
 
             const options = {
                 method: "Get",
@@ -44,11 +51,18 @@ const Job = () => {
 
         fetchJobsData();
 
-    }, []);
+    }, [allValues.userIn]);
+
+    const onChangeUserIn = (e) => {
+        if (e.key === "Enter") {
+            setValues({ ...allValues, userIn: e.target.value });
+        }
+
+    }
 
     return (
 
-        <>
+        <div className='my-bg'>
             <Header />
 
             <div className="container-fluid my-cont">
@@ -58,6 +72,8 @@ const Job = () => {
                     </div>
 
                     <div className="col-8 p-4 pl-5">
+                        <input onKeyUp={onChangeUserIn} type="search" className='form-control border-danger' placeholder='Please Enter your Job' />
+                        <br />
                         <ul className='p-2'>
                             {
                                 allValues.userArr.map(each => <DisplayJobCard key={each.id} eachCard={each} />)
@@ -66,7 +82,7 @@ const Job = () => {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 
 }

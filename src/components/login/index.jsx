@@ -33,19 +33,14 @@ const Login = () => {
 
         if (allValues.username === "Shreyash" && allValues.password === "Shreyash@123") {
             tempUserIn = "rahul";
-            tempPass = "rahul@2021"
-        }
-        else {
-            tempUserIn = "rahul";
-            tempPass = "rahul@2021"
+            tempPass = "rahul@2021";
         }
 
         const userDetails = {
-            username: tempUserIn,
-            password: tempPass
+            username: tempUserIn || allValues.username,
+            password: tempPass || allValues.password
+
         }
-
-
 
         const options = {
             method: "Post",
@@ -66,10 +61,19 @@ const Login = () => {
 
             }
             else {
-                setValues({ ...allValues, errorMsg: data.error_msg });
+                // setValues({ ...allValues, errorMsg: data.error_msg });
+                // setValues({ ...allValues, errorMsg: "Username and password did not match" });
+
+                let msg = data.error_msg;
+
+                if (data.error_msg === "invalid username") {
+                    msg = "Username and password didn't match"
+                }
+                else if (data.error_msg === "username and password didn't match") {
+                    msg = "username and password didn't match"
+                }
+                setValues({ ...allValues, errorMsg: msg })
             }
-
-
 
         } catch (error) {
 
@@ -112,13 +116,12 @@ const Login = () => {
 
                 <br /> <br />
                 <b className='text-danger'>{allValues.errorMsg}</b>
+
             </form>
 
 
         </div>
     )
 }
-
-
 
 export default Login;

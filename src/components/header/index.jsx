@@ -23,10 +23,10 @@ const Header = () => {
             <Link className='logo' to="/">JobHunt&Co</Link>
 
             <ul className='my-nav mt-3'>
-                <li>
+                <li className='p-3'>
                     <Link className='my-link' to="/">Home</Link>
-                </li>
-                <li>
+                </li >
+                <li className='p-3'>
                     <Link className='my-link' to="/job">Jobs</Link>
                 </li>
 
