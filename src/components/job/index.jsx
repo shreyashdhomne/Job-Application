@@ -51,13 +51,25 @@ const Job = () => {
 
         fetchJobsData();
 
-    }, [allValues.userIn]);
+    }, [allValues.userIn, allValues.empType]);
 
     const onChangeUserIn = (e) => {
         if (e.key === "Enter") {
             setValues({ ...allValues, userIn: e.target.value });
         }
 
+    }
+
+    const ChangeEmpType = (value, isChecked) => {
+
+        if (isChecked) {
+            //add
+            setValues({ ...allValues, empType: allValues.empType.push(value) })
+        }
+        else {
+            setValues({ ...allValues, empType: allValues.empType.filter(each => each !== value) });
+            //remove
+        }
     }
 
     return (
@@ -68,7 +80,7 @@ const Job = () => {
             <div className="container-fluid my-cont">
                 <div className="row" >
                     <div className="col-4 border-right border-dark p-4 pl-5">
-                        <FilterSection />
+                        <FilterSection ChangeEmpType={ChangeEmpType} />
                     </div>
 
                     <div className="col-8 p-4 pl-5">

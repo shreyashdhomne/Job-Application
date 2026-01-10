@@ -55,7 +55,7 @@ const salaryArr = [
 
 
 
-const FilterSection = () => {
+const FilterSection = ({ ChangeEmpType }) => {
 
     const [allValues, setValues] = useState({
         profile: {}
@@ -109,6 +109,9 @@ const FilterSection = () => {
         </div>
 
     )
+    const ChangeType = (e) => {
+        ChangeEmpType(e.target.value, e.target.checked);
+    }
 
     const displayEmpFilter = () => {
         return (
@@ -116,7 +119,7 @@ const FilterSection = () => {
                 {
                     employmentType.map((each) => (
                         <li style={{ listStyle: "none" }} key={each.id}>
-                            <input className='ml-4' type="checkbox" value={each.id} id={each.id} />
+                            <input className='ml-4' onChange={ChangeType} type="checkbox" value={each.id} id={each.id} />
                             <label className='pl-3' htmlFor={each.id}>{each.title}</label>
                         </li>
                     ))
