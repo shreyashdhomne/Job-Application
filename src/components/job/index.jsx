@@ -21,6 +21,7 @@ const Job = () => {
             const token = Cookies.get("myToken")
 
             const { empType, salary, userIn } = allValues;
+            console.log(empType)
 
             const api = `https://apis.ccbp.in/jobs?employment_type=${empType}&minimum_package=${salary}&search=${userIn}`;
 
@@ -64,7 +65,7 @@ const Job = () => {
 
         if (isChecked) {
             //add
-            setValues({ ...allValues, empType: allValues.empType.push(value) })
+            setValues({ ...allValues, empType: [...allValues.empType, value] })
         }
         else {
             setValues({ ...allValues, empType: allValues.empType.filter(each => each !== value) });

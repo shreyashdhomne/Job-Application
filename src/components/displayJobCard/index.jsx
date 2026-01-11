@@ -2,6 +2,7 @@ import { IoLocationSharp } from 'react-icons/io5';
 import './index.css'
 import { MdOutlineStarPurple500 } from "react-icons/md";
 import { FaBriefcase } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 // {
 //   "jobs": [
@@ -22,47 +23,50 @@ import { FaBriefcase } from 'react-icons/fa';
 
 const DisplayJobCard = ({ eachCard }) => {
     return (
-        <li style={{ listStyle: "none" }} className='bg-dark shadow p-3 rounded mb-4 my-card'>
+        <>
+            <li style={{ listStyle: "none" }} className='bg-dark shadow p-3 rounded mb-4 my-card'>
 
-            <div className='d-flex'>
+                <div className='d-flex'>
 
-                <img src={eachCard.company_logo_url} width="80px" />
-                <div>
+                    <img src={eachCard.company_logo_url} width="80px" />
+                    <div>
 
-                    <h3 className='ml-3'>{eachCard.title}</h3>
+                        <h3 className='ml-3'>{eachCard.title}</h3>
 
-                    <MdOutlineStarPurple500 className='ml-3' style={{ color: "gold" }} />
-                    <span className='ml-2'>{eachCard.rating}</span>
+                        <MdOutlineStarPurple500 className='ml-3' style={{ color: "gold" }} />
+                        <span className='ml-2'>{eachCard.rating}</span>
+
+
+                    </div>
+                </div>
+
+                <br />
+
+                <div className='d-flex justify-content-between'>
+                    <div>
+                        <IoLocationSharp className='ml-2' />
+                        <span className='ml-2'>{eachCard.location}</span>
+
+                        <FaBriefcase className='ml-2' />
+                        <span className='ml-2'>{eachCard.employment_type}</span>
+                    </div>
+
+                    <div>
+                        <h4>
+                            {eachCard.package_per_annum}
+                        </h4>
+                    </div>
 
 
                 </div>
-            </div>
+                <hr style={{ background: "white" }} />
 
-            <br />
+                <h5>Description</h5>
+                <p>{eachCard.job_description}</p>
 
-            <div className='d-flex justify-content-between'>
-                <div>
-                    <IoLocationSharp className='ml-2' />
-                    <span className='ml-2'>{eachCard.location}</span>
+            </li >
+        </>
 
-                    <FaBriefcase className='ml-2' />
-                    <span className='ml-2'>{eachCard.employment_type}</span>
-                </div>
-
-                <div>
-                    <h4>
-                        {eachCard.package_per_annum}
-                    </h4>
-                </div>
-
-
-            </div>
-            <hr style={{ background: "white" }} />
-
-            <h5>Description</h5>
-            <p>{eachCard.job_description}</p>
-
-        </li >
     )
 }
 
